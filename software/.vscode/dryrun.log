@@ -1,0 +1,20 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/devel/fpga_server'
+for subdir in . cpp_framework; do \
+    mkdir -p -m 777 obj_x86/$subdir ;\
+done
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c demo_server.cpp -o obj_x86/demo_server.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cmd_server_base.cpp -o obj_x86/cmd_server_base.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c globals.cpp -o obj_x86/globals.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c main.cpp -o obj_x86/main.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c stat_thread.cpp -o obj_x86/stat_thread.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/config_file.cpp -o obj_x86/cpp_framework/config_file.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/netsock.cpp -o obj_x86/cpp_framework/netsock.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/cmd_line.cpp -o obj_x86/cpp_framework/cmd_line.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/serial_port.cpp -o obj_x86/cpp_framework/serial_port.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/cthread.cpp -o obj_x86/cpp_framework/cthread.o
+g++ -m64  -std=c++17 -O2 -g -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -Wno-strict-aliasing -fcommon -DLINUX -Icpp_framework -c cpp_framework/event.cpp -o obj_x86/cpp_framework/event.o
+g++ -m64 -pthread -o fpga_server.x86 obj_x86/demo_server.o obj_x86/cmd_server_base.o obj_x86/globals.o obj_x86/main.o obj_x86/stat_thread.o obj_x86/cpp_framework/config_file.o obj_x86/cpp_framework/netsock.o obj_x86/cpp_framework/cmd_line.o obj_x86/cpp_framework/serial_port.o obj_x86/cpp_framework/cthread.o obj_x86/cpp_framework/event.o
+strip fpga_server.x86
+make: Leaving directory '/devel/fpga_server'
+ 
